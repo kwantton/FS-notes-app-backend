@@ -46,7 +46,12 @@ const unknownEndpoint = (request, response) => { // THIS IS LAST, BECAUSE THIS W
 
 
 app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
+  response.send(`
+  <h1>Hello! Welcome to the notes app</h1>
+  <p>
+  for notes, see <a href='/api/notes'>notes</a>
+  </p>
+  `)
 })
 
 app.get('/api/notes', (request, response) => { // "The code automatically uses the defined toJSON when formatting notes to the response." thanks to the above toJSON
