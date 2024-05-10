@@ -2,10 +2,9 @@ const mongoose = require('mongoose') // mongodb (from npm install mongoose; mong
 
 mongoose.set('strictQuery', false)
 
-const url = process.env.MONGODB_URI // "It's not a good idea to hardcode the address of the database into the code, so instead the address of the database is passed to the application via the MONGODB_URI environment variable."
+const url = process.env.MONGODB_URI // "It's not a good idea to hardcode the address of the database into the code, so instead the address of the database is passed to the application via the MONGODB_URI environment variable." This is stored in root/.env of the git c:
 
 console.log('connecting to', url)
-
 mongoose.connect(url)
 
   .then(result => {
