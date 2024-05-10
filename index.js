@@ -38,12 +38,9 @@ app.get('/api/notes', (request, response) => {
     response.json(notes)
   })
 })
-app.get('/api/notes', (request, response) => { // "The code automatically uses the defined toJSON when formatting notes to the response." thanks to the above toJSON
-  Note.find({}).then(notes => {
-    response.json(notes)
-  })
-})
+
 */
+
 
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
@@ -77,8 +74,10 @@ app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
-app.get('/api/notes', (request, response) => {
-  response.json(notes)
+app.get('/api/notes', (request, response) => { // "The code automatically uses the defined toJSON when formatting notes to the response." thanks to the above toJSON
+  Note.find({}).then(notes => { // NB! Note is imported from ./models/note. So this now uses MongoDB!! (Note.find... part!)
+    response.json(notes)
+  })
 })
 
 app.get('/api/notes/:id', (request, response) => {
