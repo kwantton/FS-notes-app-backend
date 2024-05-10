@@ -1,26 +1,10 @@
-const express = require('express')
+const express = require('express') // library for server-side development
 const app = express()
 require('dotenv').config() // needed for accessing environment variables! "It's important that dotenv gets imported before the note model is imported. This ensures that the environment variables from the .env file are available globally before the code from the other modules is imported." https://fullstackopen.com/en/part3/saving_data_to_mongo_db#fetching-objects-from-the-database
 
 const Note = require('./models/note')
 
-let notes = [ // still needed! HOWEVER! This default content will be overwritten by the content of MongoDB NoteApp -database, so these won't be shown c:
-  {
-    id: 1,
-    content: "Default: HTML is easy",
-    important: true
-  },
-  {
-    id: 2,
-    content: "Default: Browser can execute only JavaScript",
-    important: false
-  },
-  {
-    id: 3,
-    content: "Default: GET and POST are the most important methods of HTTP protocol",
-    important: true
-  }
-]
+let notes = [] // "notes" is still needed! HOWEVER! This default content will be overwritten by the content of MongoDB NoteApp -database, so these won't be shown c:
 
 app.use(express.static('dist')) // NEEDED FOR SERVING STATIC FILES FROM THE BACKEND https://fullstackopen.com/en/part3/deploying_app_to_internet 
 
@@ -39,11 +23,6 @@ app.use(cors())
 app.use(express.json())
 app.use(requestLogger) // this has to be AFTER the definition of requestLogger above, ofc c:
 //app.use(morgan('combined')) // https://github.com/expressjs/morgan "examples"-section
-
-const unknownEndpoint = (request, response) => { // THIS IS LAST, BECAUSE THIS WILL ONLY BE EXECUTED IF NONE OF THE PATHS ABOVE HAVE BEEN EXECUTED! c:
-  response.status(404).send({ error: 'unknown endpoint' })
-}
-
 
 app.get('/', (request, response) => {
   response.send(`
@@ -85,11 +64,13 @@ app.get('/api/notes/:id', (request, response) => {
 
 app.delete('/api/notes/:id', (request, response) => {
   const id = Number(request.params.id)
-  notes = notes.filter(note => note.id !== id)
-
+  notes = notes.filter(note => note.id !== id) // tämän takia "notes"-muuttuja, joka alustetaan "[]", on edelleen tarpeellinen
   response.status(204).end()
 })
 
+const unknownEndpoint = (request, response) => { // THIS IS LAST, BECAUSE THIS WILL ONLY BE EXECUTED IF NONE OF THE PATHS ABOVE HAVE BEEN EXECUTED! c:
+  response.status(404).send({ error: 'unknown endpoint' })
+}
 app.use(unknownEndpoint) //   first definition above, THEN use c: 
 
 const PORT = process.env.PORT // environment variable PORT, defined in .env of the root folder! NEVER share that folder in GitHub - include it in .gitignore
