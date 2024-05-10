@@ -1,4 +1,5 @@
-POST http://localhost:3001/api/notes
+// https://fs-notes-app-backend-mongo.onrender.com/
+POST https://fs-notes-app-backend-mongo.onrender.com/api/notes
 Content-Type: application/json
 
 {
