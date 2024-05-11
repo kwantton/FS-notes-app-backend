@@ -1,2 +1,2 @@
-// https://fs-notes-app-backend-mongo.onrender.com/ ellet ole poistanut/muuttanut
+// https://localhost:3001 ellet ole poistanut/muuttanut
 GET https://fs-notes-app-backend-mongo.onrender.com/api/notes
