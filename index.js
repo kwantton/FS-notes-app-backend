@@ -4,7 +4,7 @@ require('dotenv').config() // needed for accessing environment variables! "It's 
 
 const Note = require('./models/note')
 
-let notes = [] // "notes" is still needed! HOWEVER! This default content will be overwritten by the content of MongoDB NoteApp -database, so these won't be shown c:
+let notes = [] // "notes" is no longer needed. If you were to write something here, this default content would be overwritten by the content of MongoDB NoteApp -database, so these won't be shown c:
 
 app.use(express.static('dist')) // NEEDED FOR SERVING STATIC FILES FROM THE BACKEND https://fullstackopen.com/en/part3/deploying_app_to_internet 
 
