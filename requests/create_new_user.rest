@@ -1,0 +1,10 @@
+// https://fs-notes-app-backend-mongo.onrender.com/api/users/
+// NOTE! https doesn't work locally (localhost), use http instead; https works only in the production build online - not in localhost
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+    "username": "root3",
+    "name": "Superuser",
+    "password": "salainen"
+}

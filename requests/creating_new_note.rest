@@ -1,8 +1,14 @@
-// https://fs-notes-app-backend-mongo.onrender.com/
-POST https://fs-notes-app-backend-mongo.onrender.com/api/notes
+// https://fs-notes-app-backend-mongo.onrender.com/api/notes
+// http://localhost:3001/api/notes/
+// https://fullstackopen.com/en/part4/user_administration#creating-a-new-note
+// NOTE! the "userId" below has to be an ACTUALLY EXISTING ONE. It has to match to someone who exists in the database! Or, at least, it apparently doesn't work otherwise... c:
+
+POST http://localhost:3001/api/notes/
 Content-Type: application/json
+Authorization: Bearer awesomeSecret
 
 {
     "content":"moro :D",
-    "important":true
+    "important":true,
+    "userId":"6648fbd004507449ad36cfb6"
 }
